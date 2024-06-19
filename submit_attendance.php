@@ -32,7 +32,7 @@ if (isset($student_id) && isset($class_name) && isset($attendance_date) && isset
     $count = ($status == '遅刻') ? 0.3 : 1.0;
 
     // 出席情報をデータベースに保存
-    $sql = "INSERT INTO attendance (student_id, class_name, attendance_date, status) VALUES ('$student_id', '$class_name', '$attendance_date', '$status')";
+    $sql = "INSERT INTO attendance (student_id, class_name, attendance_date, status, count) VALUES ('$student_id', '$class_name', '$attendance_date', '$status', '$count')";
 
     if ($conn->query($sql) === TRUE) {
         echo "<p>出席登録が成功しました。</p>";
