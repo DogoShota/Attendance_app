@@ -42,6 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
     <div class="container">
         <h2>ログイン</h2>
+        <h3>こんにちは</h3>
         <form method="post" action="login.php">
             <label for="username">ユーザー名:</label>
             <input type="text" id="username" name="username" required>
