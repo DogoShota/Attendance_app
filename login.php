@@ -67,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <input type="text" id="username" name="username" required>
             <label for="password">パスワード:</label>
             <input type="password" id="password" name="password" required>
-            <input type="submit" value="ログイン">
+            <button type="submit" class="button">ログイン</button>
         </form>
         <?php
         if (isset($error)) {

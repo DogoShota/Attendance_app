@@ -9,6 +9,7 @@ body {
 }
 
 h1, h2 {
+    text-align: center;
     color: #333;
 }
 
@@ -25,6 +26,7 @@ form {
 label {
     display: block;
     margin-bottom: 10px;
+    color: #555;
 }
 
 input[type="text"],
@@ -44,6 +46,7 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    text-align: center;
     margin-right: 10px;
 }
 
