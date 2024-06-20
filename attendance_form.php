@@ -40,10 +40,9 @@ if (!isset($_SESSION['username'])) {
                 </div>
             </div>
 
-            <div class="button-group">
-                <input type="submit" value="登録">
-                <a href="index.php" class="button button-spacing">ホームに戻る</a>
-            </div>
+            <button type="submit" class="button">登録</button>
+
+            <a href="index.php" class="button">ホームに戻る</a>
         </form>
     </div>
 </body>

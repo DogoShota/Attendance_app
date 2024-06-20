@@ -1,3 +1,10 @@
+/* CSS全体に適用するためのリセット */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -23,43 +30,36 @@ form {
     margin-top: 20px;
 }
 
+/* フォーム内のラベル */
 label {
     display: block;
     margin-bottom: 10px;
     color: #555;
+    font-weight: bold;
 }
 
-input[type="text"],
-input[type="password"],
-input[type="date"] {
-    width: calc(100% - 22px);
+/* フォーム内のインプット */
+input[type="text"], input[type="password"], input[type="date"] {
+    width: 100%;
     padding: 10px;
     margin-bottom: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
 
-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-align: center;
-    margin-right: 10px;
-}
-
+/* ボタンスタイル */
 .button {
     display: inline-block;
     text-decoration: none;
+    text-align: center;
     background-color: #4CAF50;
     color: white;
-    padding: 10px 15px;
+    padding: 15px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin: 10px 0;
+    width: calc(100% - 42px);
+    margin-top: 10px;
 }
 
 a.button {
@@ -85,15 +85,35 @@ th {
     background-color: #f2f2f2;
 }
 
+/* ラジオボタンのグループ */
 .radio-group {
+    margin-bottom: 20px;
     display: flex;
     align-items: center;
 }
 
+/* ラジオボタンのスタイル */
 .radio-group input[type="radio"] {
     margin-right: 5px;
 }
 
+/* ラジオボタンのラベルスタイル */
 .radio-group label {
     margin-right: 20px;
+}
+
+/* エラーメッセージのスタイル */
+.error {
+    color: red;
+    margin-bottom: 20px;
+}
+
+/* フォームのボタンの間隔 */
+form .button {
+    width: 100%;
+}
+
+/* フォームのボタンとリンクの間隔 */
+form .button + .button {
+    margin-left: 10px;
 }
