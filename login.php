@@ -25,9 +25,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $sql = "SELECT * FROM users WHERE username='$username'";
     $result = $conn->query($sql);
 
+    // ユーザーが見つかった場合
     if ($result->num_rows > 0) {
+
         // ユーザーデータを取得
         $user = $result->fetch_assoc();
+
         // パスワードを検証
         if (password_verify($password, $user['password'])) {
             //セッションにユーザー情報を保存

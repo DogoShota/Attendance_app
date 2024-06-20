@@ -18,7 +18,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 
 // 接続を確認
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    die("データベース接続に失敗しました。" . $conn->connect_error);
 }
 
 // フォームからデータを受け取る
