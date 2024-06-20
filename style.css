@@ -5,6 +5,17 @@
     box-sizing: border-box;
 }
 
+/* フォーム全体のコンテナ */
+.container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    text-align: center; /* コンテナ内のテキストを中央揃え */
+}
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -116,4 +127,11 @@ form .button {
 /* フォームのボタンとリンクの間隔 */
 form .button + .button {
     margin-left: 10px;
+}
+
+/* メッセージのスタイル */
+.message {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
 }

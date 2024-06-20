@@ -35,16 +35,29 @@ if (isset($student_id) && isset($class_name) && isset($attendance_date) && isset
     $sql = "INSERT INTO attendance (student_id, class_name, attendance_date, status, count) VALUES ('$student_id', '$class_name', '$attendance_date', '$status', '$count')";
 
     if ($conn->query($sql) === TRUE) {
-        echo "<p>出席登録が成功しました。</p>";
-        echo '<a href="index.php" class="btn btn-home">ホームに戻る</a>';
+        $message = "出席登録が成功しました。";
     } else {
-        echo "エラー: " . $sql . "<br>" . $conn->error;
+        $message = "エラー: " . $sql . "<br>" . $conn->error;
     }
-
-    // データベース接続を閉じる
-    $conn->close();
 } else {
-    echo "エラー：フォームからデータが正しく送信されていません。";
-    $conn->close();
+    $message = "エラー：フォームからデータが正しく送信されていません。";
 }
+
+// データベース接続を閉じる
+$conn->close();
+
 ?>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>出席登録結果</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <p class="message"><?php echo $message; ?></p>
+        <a href="index.php" class="button">ホームに戻る</a>
+    </div>
+</body>
+</html>
