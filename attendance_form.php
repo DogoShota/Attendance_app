@@ -28,7 +28,7 @@ if (!isset($_SESSION['username'])) {
             <label for="remarks">備考:</label>
             <input type="text" id="remarks" name="remarks" rows="4" cols="50" required>
 
-            <label>ステータス:</label>
+            <label>種類:</label>
             <div class="radio-group">
                 <div class="radio-item">
                     <input type="radio" id="absence" name="status" value="欠席" required>

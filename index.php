@@ -15,21 +15,23 @@ if ($conn->connect_error) {
     die("接続失敗:" . $conn->connect_error);
 }
 
-// 授業ごとの欠席と遅刻の総数を取得
-$sql = "SELECT class_name, 
-               SUM(CASE WHEN status = '欠席' THEN 1 ELSE 0 END) AS absence_count, 
-               SUM(CASE WHEN status = '遅刻' THEN 1 ELSE 0 END) AS tardy_count,
-               GROUP_CONCAT(remarks SEPARATOR '; ') AS remarks
-        FROM attendance 
-        GROUP BY class_name";
+// 欠席と遅刻の総数を取得
+$sql = "SELECT 
+            SUM(CASE WHEN status = '欠席' THEN count ELSE 0 END) AS total_absences,
+            SUM(CASE WHEN status = '遅刻' THEN count ELSE 0 END) AS total_tardies
+        FROM attendance";
 $result = $conn->query($sql);
 
-$attendance_data = [];
+$total_absences = 0;
+$total_tardies = 0;
 if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $attendance_data[] = $row;
-    }
+    $row = $result->fetch_assoc();
+    $total_absences = $row['total_absences'];
+    $total_tardies = $row['total_tardies'];
 }
+
+// 遅刻を3回で1回の欠席としてカウントしたい
+$total_absences = ($total_absences * 3 + $total_tardies) / 3;
 
 $conn->close();
 ?>
@@ -49,6 +51,8 @@ $conn->close();
             <a href="history.php" class="button">入力履歴一覧</a>
             <a href="logout.php" class="button">ログアウト</a>
         </div>
+        <h2>現在の総欠課数: <?php echo htmlspecialchars($total_absences, ENT_QUOTES, 'UTF-8'); ?></h2>
+    </div>
     </div>
 </body>
 </html>
