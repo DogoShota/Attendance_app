@@ -1,6 +1,11 @@
 <?php
-session_start(); // セッションを開始します
-session_destroy(); // セッションを破棄します
-header('Location: login.php'); // ログインページにリダイレクトします
-exit;
+    // セッションを開始します
+    session_start();
+
+    // セッションを破棄します
+    session_destroy();
+
+    // ログインページにリダイレクトします
+    header('Location: login.php');
+    exit;
 ?>
