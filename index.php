@@ -9,8 +9,10 @@ if (!isset($_SESSION['username'])) {
 
 // データベースに接続
 $conn = new mysqli('localhost', 'root', '', 'attendance_db');
+
+// 接続のチェック
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    die("接続失敗:" . $conn->connect_error);
 }
 
 // 授業ごとの欠席と遅刻の総数を取得
@@ -40,26 +42,26 @@ $conn->close();
 </head>
 <body>
     <div class="container">
-        <h2>ホーム画面</h2>
+        <h1>ホーム画面</h1>
         <div class="top-buttons">
             <a href="attendance_form.php" class="button">欠席・遅刻登録</a>
             <a href="logout.php" class="button">ログアウト</a>
         </div>
-        <h3>授業ごとの欠席と遅刻の総数</h3>
+        <h2>授業ごとの欠席と遅刻の総数</h2>
         <table>
             <thead>
                 <tr>
                     <th>授業名</th>
-                    <th>欠席の総数</th>
-                    <th>遅刻の総数</th>
+                    <th>欠席数</th>
+                    <th>遅刻数</th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach ($attendance_data as $data): ?>
                     <tr>
-                        <td><?php echo htmlspecialchars($data['class_name']); ?></td>
-                        <td><?php echo htmlspecialchars($data['absence_count']); ?></td>
-                        <td><?php echo htmlspecialchars($data['tardy_count']); ?></td>
+                        <td><?php echo htmlspecialchars($data['class_name'], ENT_QUOTES, 'UTF-8'); ?></td>
+                        <td><?php echo htmlspecialchars($data['absence_count'], ENT_QUOTES, 'UTF-8'); ?></td>
+                        <td><?php echo htmlspecialchars($data['tardy_count'], ENT_QUOTES, 'UTF-8'); ?></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
