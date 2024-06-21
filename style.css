@@ -95,7 +95,8 @@ th, td {
 }
 
 th {
-    background-color: #62b840;
+    background-color: #4CAF50;
+    color: white;
     font-weight: bold;
 }
 
