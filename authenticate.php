@@ -9,19 +9,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     echo "Received password: " . htmlspecialchars($password) . "<br>";
 }
 
+// データベースに接続
 $conn = new mysqli('localhost', 'root', '', 'attendance_db');
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT * FROM users WHERE username='$username'";
-$result = $conn->query($sql);
+// プリペアドステートメントの使用
+$stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
+$stmt->bind_param("s", $username);
+$stmt->execute();
+$result = $stmt->get_result();
 
 if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
-    echo "Stored hash: " . $row['password'] . "<br>";
     if (password_verify($password, $row['password'])) {
-        echo "Password is valid!";
         $_SESSION['username'] = $username;
         $_SESSION['is_admin'] = $row['is_admin'];
         header("Location: index.php");
@@ -33,6 +35,7 @@ if ($result->num_rows > 0) {
     echo "ユーザー名が見つかりません。";
 }
 
+$stmt->close();
 $conn->close();
 ?>
 
