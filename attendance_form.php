@@ -19,14 +19,14 @@ if (!isset($_SESSION['username'])) {
     <div class="container">
         <h2>欠席・遅刻登録フォーム</h2>
         <form action="submit_attendance.php" method="post">
-            <label for="student_id">学生ID:</label>
-            <input type="text" id="student_id" name="student_id" required>
-
             <label for="class_name">授業名:</label>
             <input type="text" id="class_name" name="class_name" required>
 
             <label for="attendance_date">日付:</label>
             <input type="date" id="attendance_date" name="attendance_date" required>
+
+            <label for="remarks">備考:</label>
+            <textarea id="remarks" name="remarks" rows="4" cols="50"></textarea>
 
             <label>ステータス:</label>
             <div class="radio-group">
@@ -41,7 +41,6 @@ if (!isset($_SESSION['username'])) {
             </div>
 
             <button type="submit" class="button">登録</button>
-
             <a href="index.php" class="button">ホームに戻る</a>
         </form>
     </div>

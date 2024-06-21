@@ -18,7 +18,7 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: #eef2f3;
     margin: 0;
     padding: 0;
     display: flex;
@@ -108,12 +108,12 @@ th {
 
 /* ラジオボタンのスタイル */
 .radio-group input[type="radio"] {
-    margin-right: 5px;
+    margin-left: 5px;
 }
 
 /* ラジオボタンのラベルスタイル */
 .radio-group label {
-    margin-right: 20px;
+    margin-right: 0 30px;
 }
 
 /* エラーメッセージのスタイル */
@@ -137,9 +137,5 @@ form .button + .button {
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 20px;
-}
-
-/* ホームに戻るボタンのスタイル */
-.home-button {
-    margin-top: 20px; /* フォームとホームに戻るボタンの間隔を設定 */
+    text-align: center;
 }

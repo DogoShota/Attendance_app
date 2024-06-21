@@ -22,17 +22,17 @@ if ($conn->connect_error) {
 }
 
 // フォームからデータを受け取る
-$student_id = $_POST['student_id'];
 $class_name = $_POST['class_name'];
 $attendance_date = $_POST['attendance_date'];
+$remarks = $_POST['remarks'];
 $status = $_POST['status'];
 
-if (isset($student_id) && isset($class_name) && isset($attendance_date) && isset($status)) {
+if (isset($class_name) && isset($attendance_date) && isset($remarks) && isset($status)) {
     // 欠席または遅刻の値を決定
     $count = ($status == '遅刻') ? 0.3 : 1.0;
 
     // 出席情報をデータベースに保存
-    $sql = "INSERT INTO attendance (student_id, class_name, attendance_date, status, count) VALUES ('$student_id', '$class_name', '$attendance_date', '$status', '$count')";
+    $sql = "INSERT INTO attendance (class_name, attendance_date, status, count, remarks) VALUES ('$class_name', '$attendance_date', '$status', '$count', '$remarks')";
 
     if ($conn->query($sql) === TRUE) {
         $message = "出席登録が成功しました。";
