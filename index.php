@@ -18,7 +18,8 @@ if ($conn->connect_error) {
 // 授業ごとの欠席と遅刻の総数を取得
 $sql = "SELECT class_name, 
                SUM(CASE WHEN status = '欠席' THEN 1 ELSE 0 END) AS absence_count, 
-               SUM(CASE WHEN status = '遅刻' THEN 1 ELSE 0 END) AS tardy_count 
+               SUM(CASE WHEN status = '遅刻' THEN 1 ELSE 0 END) AS tardy_count,
+               GROUP_CONCAT(remarks SEPARATOR '; ') AS remarks
         FROM attendance 
         GROUP BY class_name";
 $result = $conn->query($sql);
@@ -54,6 +55,7 @@ $conn->close();
                     <th>授業名</th>
                     <th>欠席数</th>
                     <th>遅刻数</th>
+                    <th>備考欄</th>
                 </tr>
             </thead>
             <tbody>
@@ -62,6 +64,7 @@ $conn->close();
                         <td><?php echo htmlspecialchars($data['class_name'], ENT_QUOTES, 'UTF-8'); ?></td>
                         <td><?php echo htmlspecialchars($data['absence_count'], ENT_QUOTES, 'UTF-8'); ?></td>
                         <td><?php echo htmlspecialchars($data['tardy_count'], ENT_QUOTES, 'UTF-8'); ?></td>
+                        <td><?php echo htmlspecialchars($data['remarks'], ENT_QUOTES, 'UTF-8'); ?></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
