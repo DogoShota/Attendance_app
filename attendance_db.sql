@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- ホスト: 127.0.0.1
--- 生成日時: 2024-06-18 05:22:35
+-- 生成日時: 2024-06-21 05:15:51
 -- サーバのバージョン： 10.4.32-MariaDB
 -- PHP のバージョン: 8.2.12
 
@@ -35,40 +35,20 @@ CREATE TABLE `attendance` (
   `status` varchar(10) NOT NULL,
   `student_name` varchar(255) DEFAULT NULL,
   `attendance_value` float DEFAULT NULL,
-  `count` decimal(3,1) NOT NULL
+  `count` decimal(3,1) NOT NULL,
+  `remarks` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- テーブルのデータのダンプ `attendance`
 --
 
-INSERT INTO `attendance` (`id`, `student_id`, `class_name`, `attendance_date`, `status`, `student_name`, `attendance_value`, `count`) VALUES
-(23, '214016', '卒論', '2024-06-12', '', NULL, NULL, 0.3),
-(24, '214016', '卒論', '2024-06-15', '遅刻', NULL, NULL, 0.3),
-(25, '214016', '卒論', '2024-06-13', '', NULL, NULL, 1.0),
-(26, '214016', '卒論', '2024-06-05', '', NULL, NULL, 1.0),
-(27, '214016', '卒論', '2024-06-11', '', NULL, NULL, 1.0),
-(28, '214016', '卒論', '2024-06-01', '', NULL, NULL, 0.3);
-
--- --------------------------------------------------------
-
---
--- テーブルの構造 `users`
---
-
-CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
-  `username` varchar(50) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `is_admin` tinyint(1) DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- テーブルのデータのダンプ `users`
---
-
-INSERT INTO `users` (`id`, `username`, `password`, `is_admin`) VALUES
-(5, 'admin', '$2y$10$HWlpVOnHzEROzGCqR0MB.OIVSrd/9Itf4BZ9Uvc7UTM.QD56.Vq.K', 1);
+INSERT INTO `attendance` (`id`, `student_id`, `class_name`, `attendance_date`, `status`, `student_name`, `attendance_value`, `count`, `remarks`) VALUES
+(37, '', '卒論', '2024-06-07', '欠席', NULL, NULL, 1.0, '猫にかまれたため'),
+(38, '', '卒論', '2024-06-07', '欠席', NULL, NULL, 1.0, '車に轢かれたため'),
+(39, '', '卒論', '2024-06-17', '欠席', NULL, NULL, 1.0, '電車の遅延のため'),
+(40, '', 'クラウド', '2024-06-07', '欠席', NULL, NULL, 1.0, '森井'),
+(41, '', 'クラウド', '2024-06-07', '遅刻', NULL, NULL, 0.3, '大野');
 
 --
 -- ダンプしたテーブルのインデックス
@@ -81,13 +61,6 @@ ALTER TABLE `attendance`
   ADD PRIMARY KEY (`id`);
 
 --
--- テーブルのインデックス `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `username` (`username`);
-
---
 -- ダンプしたテーブルの AUTO_INCREMENT
 --
 
@@ -95,13 +68,7 @@ ALTER TABLE `users`
 -- テーブルの AUTO_INCREMENT `attendance`
 --
 ALTER TABLE `attendance`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
-
---
--- テーブルの AUTO_INCREMENT `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
