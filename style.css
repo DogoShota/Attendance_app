@@ -74,6 +74,13 @@ input[type="text"], input[type="password"], input[type="date"] {
     margin-top: 10px;
 }
 
+.form-buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
 a.button {
     text-align: center;
 }
@@ -97,7 +104,6 @@ th, td {
 th {
     background-color: #4CAF50;
     color: white;
-    font-weight: bold;
 }
 
 /* ラジオボタンのグループ */

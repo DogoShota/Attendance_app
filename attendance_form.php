@@ -26,7 +26,7 @@ if (!isset($_SESSION['username'])) {
             <input type="date" id="attendance_date" name="attendance_date" required>
 
             <label for="remarks">備考:</label>
-            <textarea id="remarks" name="remarks" rows="4" cols="50"></textarea>
+            <input type="text" id="remarks" name="remarks" rows="4" cols="50" required>
 
             <label>ステータス:</label>
             <div class="radio-group">
