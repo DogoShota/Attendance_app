@@ -25,9 +25,6 @@ if (!isset($_SESSION['username'])) {
             <label for="attendance_date">日付:</label>
             <input type="date" id="attendance_date" name="attendance_date" required>
 
-            <label for="remarks">備考:</label>
-            <input type="text" id="remarks" name="remarks" rows="4" cols="50" required>
-
             <label>種類:</label>
             <div class="radio-group">
                 <div class="radio-item">
@@ -38,7 +35,14 @@ if (!isset($_SESSION['username'])) {
                     <input type="radio" id="tardy" name="status" value="遅刻" required>
                     <label for="tardy">遅刻</label>
                 </div>
+                <div class="radio-item">
+                    <input type="radio" id="early" name="status" value="早退" required>
+                    <label for="early">早退</label>
+                </div>
             </div>
+
+            <label for="remarks">備考:</label>
+            <input type="text" id="remarks" name="remarks" rows="4" cols="50" required>
 
             <button type="submit" class="button">登録</button>
             <a href="index.php" class="button">ホームに戻る</a>

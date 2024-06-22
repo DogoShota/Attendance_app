@@ -32,7 +32,8 @@ if (isset($class_name) && isset($attendance_date) && isset($remarks) && isset($s
     $count = ($status == '遅刻') ? 0.3 : 1.0;
 
     // 出席情報をデータベースに保存
-    $sql = "INSERT INTO attendance (class_name, attendance_date, status, count, remarks) VALUES ('$class_name', '$attendance_date', '$status', '$count', '$remarks')";
+    $sql = "INSERT INTO attendance (class_name, attendance_date, status, count, remarks) 
+            VALUES ('$class_name', '$attendance_date', '$status', '$count', '$remarks')";
 
     if ($conn->query($sql) === TRUE) {
         $message = "出席登録が成功しました。";

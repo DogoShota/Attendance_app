@@ -18,20 +18,23 @@ if ($conn->connect_error) {
 // 欠席と遅刻の総数を取得
 $sql = "SELECT 
             SUM(CASE WHEN status = '欠席' THEN count ELSE 0 END) AS total_absences,
-            SUM(CASE WHEN status = '遅刻' THEN count ELSE 0 END) AS total_tardies
+            SUM(CASE WHEN status = '遅刻' THEN count ELSE 0 END) AS total_tardies,
+            SUM(CASE WHEN status = '早退' THEN count ELSE 0 END) AS total_early_leaves
         FROM attendance";
 $result = $conn->query($sql);
 
 $total_absences = 0;
 $total_tardies = 0;
+$total_early_leaves = 0;
 if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
     $total_absences = $row['total_absences'];
     $total_tardies = $row['total_tardies'];
+    $total_early_leaves = $row['total_early_leaves'];
 }
 
 // 遅刻を3回で1回の欠席としてカウントしたい
-$total_absences = ($total_absences * 3 + $total_tardies) / 3;
+$total_absences = floor(($total_absences * 3 + $total_tardies + $total_early_leaves) / 3 * 10) / 10;
 
 $conn->close();
 ?>
