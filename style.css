@@ -61,17 +61,50 @@ input[type="text"], input[type="password"], input[type="date"] {
 
 /* ボタンスタイル */
 .button {
-    display: inline-block;
-    text-decoration: none;
-    text-align: center;
     background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
     border: none;
     border-radius: 5px;
+    color: white;
     cursor: pointer;
-    width: calc(100% - 42px);
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
     margin-top: 10px;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    width: calc(100% - 42px);
+}
+
+.button:hover {
+    background-color: #45a049;
+}
+
+.delete-button {
+    background-color: #FF6347; /* 橙色に近い赤色 */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.delete-button:hover {
+    background-color: #FF4500; /* ダークオレンジ色に変更 */
+}
+
+/* フォームのスタイルを修正 */
+.delete-form {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    width: 100%;
 }
 
 table {

@@ -17,23 +17,23 @@ if ($conn->connect_error) {
 
 // 削除ボタンが押された場合
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_id'])) {
-    $delete_id = $_POST['delete_id'];
+    $delete_id = (int)$_POST['delete_id'];
     $delete_sql = "DELETE FROM attendance WHERE id = $delete_id";
     if ($conn->query($delete_sql) === TRUE) {
-        echo "削除が成功しました。";
+        echo "<script>alert('削除が成功しました。');</script>";
     } else {
         echo "エラー: " . $conn->error;
     }
 }
 
 // 入力履歴を取得
-$sql = "SELECT attendance_date, class_name, status, remarks FROM attendance ORDER BY attendance_date DESC";
+$sql = "SELECT id, attendance_date, class_name, status, remarks FROM attendance";
 $result = $conn->query($sql);
 
-$history_data = [];
+$attendance_data = [];
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        $history_data[] = $row;
+        $attendance_data[] = $row;
     }
 }
 
@@ -46,6 +46,11 @@ $conn->close();
     <meta charset="UTF-8">
     <title>入力履歴一覧</title>
     <link rel="stylesheet" href="style.css">
+    <script>
+        function confirmDelete() {
+            return confirm('本当に削除してもよろしいですか？');
+        }
+    </script>
 </head>
 <body>
     <div class="container">
@@ -61,14 +66,14 @@ $conn->close();
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($history_data as $data): ?>
+                <?php foreach ($attendance_data as $data): ?>
                     <tr>
                         <td><?php echo htmlspecialchars($data['attendance_date'], ENT_QUOTES, 'UTF-8'); ?></td>
                         <td><?php echo htmlspecialchars($data['class_name'], ENT_QUOTES, 'UTF-8'); ?></td>
                         <td><?php echo htmlspecialchars($data['status'], ENT_QUOTES, 'UTF-8'); ?></td>
                         <td><?php echo htmlspecialchars($data['remarks'], ENT_QUOTES, 'UTF-8'); ?></td>
                         <td>
-                            <form method="POST" action="history.php" onsubmit="return confirm('本当に削除しますか？');">
+                            <form method="POST" action="history.php" class="delete-form" onsubmit="return confirmDelete();">
                                 <input type="hidden" name="delete_id" value="<?php echo $data['id']; ?>">
                                 <button type="submit" class="delete-button">削除</button>
                             </form>
