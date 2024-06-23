@@ -27,9 +27,10 @@ $attendance_date = $_POST['attendance_date'];
 $remarks = $_POST['remarks'];
 $status = $_POST['status'];
 
+// ステータスに基づいてカウントを設定
+$count = 1.0;
+
 if (isset($class_name) && isset($attendance_date) && isset($remarks) && isset($status)) {
-    // 欠席または遅刻の値を決定
-    $count = ($status == '遅刻') ? 0.3 : 1.0;
 
     // 出席情報をデータベースに保存
     $sql = "INSERT INTO attendance (class_name, attendance_date, status, count, remarks) 
