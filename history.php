@@ -15,7 +15,18 @@ if ($conn->connect_error) {
     die("接続失敗:" . $conn->connect_error);
 }
 
-// 出席履歴を取得
+// 削除ボタンが押された場合
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_id'])) {
+    $delete_id = $_POST['delete_id'];
+    $delete_sql = "DELETE FROM attendance WHERE id = $delete_id";
+    if ($conn->query($delete_sql) === TRUE) {
+        echo "削除が成功しました。";
+    } else {
+        echo "エラー: " . $conn->error;
+    }
+}
+
+// 入力履歴を取得
 $sql = "SELECT attendance_date, class_name, status, remarks FROM attendance ORDER BY attendance_date DESC";
 $result = $conn->query($sql);
 
@@ -46,6 +57,7 @@ $conn->close();
                     <th>科目名</th>
                     <th>種類</th>
                     <th>備考欄</th>
+                    <th>操作</th>
                 </tr>
             </thead>
             <tbody>
@@ -55,6 +67,12 @@ $conn->close();
                         <td><?php echo htmlspecialchars($data['class_name'], ENT_QUOTES, 'UTF-8'); ?></td>
                         <td><?php echo htmlspecialchars($data['status'], ENT_QUOTES, 'UTF-8'); ?></td>
                         <td><?php echo htmlspecialchars($data['remarks'], ENT_QUOTES, 'UTF-8'); ?></td>
+                        <td>
+                            <form method="POST" action="history.php" onsubmit="return confirm('本当に削除しますか？');">
+                                <input type="hidden" name="delete_id" value="<?php echo $data['id']; ?>">
+                                <button type="submit" class="delete-button">削除</button>
+                            </form>
+                        </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
