@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- ホスト: 127.0.0.1
--- 生成日時: 2024-06-21 05:15:51
+-- 生成日時: 2024-06-23 18:13:40
 -- サーバのバージョン： 10.4.32-MariaDB
 -- PHP のバージョン: 8.2.12
 
@@ -44,11 +44,8 @@ CREATE TABLE `attendance` (
 --
 
 INSERT INTO `attendance` (`id`, `student_id`, `class_name`, `attendance_date`, `status`, `student_name`, `attendance_value`, `count`, `remarks`) VALUES
-(37, '', '卒論', '2024-06-07', '欠席', NULL, NULL, 1.0, '猫にかまれたため'),
-(38, '', '卒論', '2024-06-07', '欠席', NULL, NULL, 1.0, '車に轢かれたため'),
-(39, '', '卒論', '2024-06-17', '欠席', NULL, NULL, 1.0, '電車の遅延のため'),
-(40, '', 'クラウド', '2024-06-07', '欠席', NULL, NULL, 1.0, '森井'),
-(41, '', 'クラウド', '2024-06-07', '遅刻', NULL, NULL, 0.3, '大野');
+(71, '', '卒論', '2024-05-29', '欠席', NULL, NULL, 1.0, 'お腹痛い'),
+(72, '', '卒論', '2024-06-04', '欠席', NULL, NULL, 1.0, 'お腹痛い');
 
 --
 -- ダンプしたテーブルのインデックス
@@ -68,7 +65,7 @@ ALTER TABLE `attendance`
 -- テーブルの AUTO_INCREMENT `attendance`
 --
 ALTER TABLE `attendance`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
