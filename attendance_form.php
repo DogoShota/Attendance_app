@@ -45,8 +45,8 @@ if (!isset($_SESSION['username'])) {
             <input type="text" id="remarks" name="remarks" rows="4" cols="50" required>
 
             <button type="submit" class="button">登録</button>
-            <a href="index.php" class="button">ホームに戻る</a>
         </form>
+        <a href="index.php" class="button">ホームに戻る</a>
     </div>
 </body>
 </html>
