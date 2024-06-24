@@ -81,7 +81,7 @@ input[type="text"], input[type="password"], input[type="date"] {
 }
 
 .delete-button {
-    background-color: #FF6347; /* 橙色に近い赤色 */
+    background-color: #ff6300;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -96,11 +96,30 @@ input[type="text"], input[type="password"], input[type="date"] {
 }
 
 .delete-button:hover {
-    background-color: #FF4500; /* ダークオレンジ色に変更 */
+    background-color: #ff4300;
+}
+
+.edit-button {
+    background-color: #3366cc;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px; 
+    transition: background-color 0.3s;
+}
+
+.edit-button:hover {
+    background-color: #3346cc;
 }
 
 /* フォームのスタイルを修正 */
-.delete-form {
+.delete-form, .edit-form {
     display: inline-block;
     margin: 0;
     padding: 0;

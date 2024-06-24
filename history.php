@@ -62,7 +62,8 @@ $conn->close();
                     <th>科目名</th>
                     <th>種類</th>
                     <th>備考欄</th>
-                    <th>操作</th>
+                    <th>編集</th>
+                    <th>削除</th>
                 </tr>
             </thead>
             <tbody>
@@ -72,6 +73,12 @@ $conn->close();
                         <td><?php echo htmlspecialchars($data['class_name'], ENT_QUOTES, 'UTF-8'); ?></td>
                         <td><?php echo htmlspecialchars($data['status'], ENT_QUOTES, 'UTF-8'); ?></td>
                         <td><?php echo htmlspecialchars($data['remarks'], ENT_QUOTES, 'UTF-8'); ?></td>
+                        <td>
+                            <form action='edit_form.php' method='GET' class='edit-form'>
+                                <input type='hidden' name='edit_id' value="<?php echo $data['id']; ?>">
+                                <button type='submit' class='edit-button'>編集</button>
+                            </form>
+                        </td>
                         <td>
                             <form method="POST" action="history.php" class="delete-form" onsubmit="return confirmDelete();">
                                 <input type="hidden" name="delete_id" value="<?php echo $data['id']; ?>">
