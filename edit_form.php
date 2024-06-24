@@ -43,19 +43,26 @@ if (!isset($_SESSION['username'])) {
 
             <label for="status">種類:</label>
             <div class="radio-group">
-                <input type="radio" id="absent" name="status" value="欠席" <?php if ($row['status'] == '欠席') echo 'checked'; ?> required>
-                <label for="absent">欠席</label>
-                <input type="radio" id="tardy" name="status" value="遅刻" <?php if ($row['status'] == '遅刻') echo 'checked'; ?> required>
-                <label for="tardy">遅刻</label>
-                <input type="radio" id="leave_early" name="status" value="早退" <?php if ($row['status'] == '早退') echo 'checked'; ?> required>
-                <label for="leave_early">早退</label>
-            </div><br>
-
+                <div class="radio-item">
+                    <input type="radio" id="absent" name="status" value="欠席" <?php if ($row['status'] == '欠席') echo 'checked'; ?> required>
+                    <label for="absent">欠席</label>
+                </div>
+                <div class="radio-item">
+                    <input type="radio" id="tardy" name="status" value="遅刻" <?php if ($row['status'] == '遅刻') echo 'checked'; ?> required>
+                    <label for="tardy">遅刻</label>
+                </div>
+                <div class="radio-item">
+                    <input type="radio" id="early" name="status" value="早退" <?php if ($row['status'] == '早退') echo 'checked'; ?> required>
+                    <label for="early">早退</label>
+                </div>
+            </div>
+            <br>
             <label for="remarks">備考:</label>
             <input type="text" id="remarks" name="remarks" class="input-field" value="<?php echo htmlspecialchars($row['remarks']); ?>" required>
 
             <button type="submit" class="button">更新</button>
         </form>
+        <a href="history.php" class="button">戻る</a>
     </div>
 </body>
 </html>
