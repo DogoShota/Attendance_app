@@ -1,6 +1,8 @@
 <?php
+// データベースに接続
 $conn = new mysqli('localhost', 'root', '', 'attendance_db');
 
+// 接続のチェック
 if ($conn->connect_error) {
     die("接続失敗: " . $conn->connect_error);
 }
@@ -11,6 +13,7 @@ $attendance_date = $_POST['attendance_date'];
 $status = $_POST['status'];
 $remarks = $_POST['remarks'];
 
+// 変更情報を取得
 $sql = "UPDATE attendance SET class_name='$class_name', attendance_date='$attendance_date', status='$status', remarks='$remarks' WHERE id=$id";
 
 if ($conn->query($sql) === TRUE) {
