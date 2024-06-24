@@ -54,6 +54,7 @@ $conn->close();
             <a href="history.php" class="button">入力履歴一覧</a>
             <a href="logout.php" class="button">ログアウト</a>
         </div>
+        <br>
         <h2>現在の総欠課数: <?php echo htmlspecialchars($total_absences, ENT_QUOTES, 'UTF-8'); ?></h2>
     </div>
     </div>
