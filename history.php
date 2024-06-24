@@ -91,7 +91,6 @@ $conn->close();
         </table>
         <div class="top-buttons">
             <a href="index.php" class="button">ホームに戻る</a>
-            <a href="logout.php" class="button">ログアウト</a>
         </div>
     </div>
 </body>
