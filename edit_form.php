@@ -12,12 +12,12 @@ if (!isset($_SESSION['username'])) {
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>欠席・遅刻編集フォーム</title>
+    <title>記録編集フォーム</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h2>欠席・遅刻編集フォーム</h2>
+        <h2>記録編集フォーム</h2>
         <?php
         $id = $_GET['edit_id']; // edit_id を使用して id を取得
         $conn = new mysqli('localhost', 'root', '', 'attendance_db');
@@ -56,7 +56,7 @@ if (!isset($_SESSION['username'])) {
                     <label for="early">早退</label>
                 </div>
             </div>
-            <br>
+            
             <label for="remarks">備考:</label>
             <input type="text" id="remarks" name="remarks" class="input-field" value="<?php echo htmlspecialchars($row['remarks']); ?>" required>
 

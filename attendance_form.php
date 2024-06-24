@@ -12,12 +12,12 @@ if (!isset($_SESSION['username'])) {
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>欠席・遅刻登録フォーム</title>
+    <title>新規登録フォーム</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h2>欠席・遅刻登録フォーム</h2>
+        <h2>新規登録フォーム</h2>
         <form action="submit_attendance.php" method="post">
             <label for="class_name">授業名:</label>
             <input type="text" id="class_name" name="class_name" required>
@@ -40,7 +40,7 @@ if (!isset($_SESSION['username'])) {
                     <label for="early">早退</label>
                 </div>
             </div>
-
+            
             <label for="remarks">備考:</label>
             <input type="text" id="remarks" name="remarks" rows="4" cols="50" required>
 

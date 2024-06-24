@@ -50,7 +50,7 @@ $conn->close();
     <div class="container">
         <h1>ホーム画面</h1>
         <div class="top-buttons">
-            <a href="attendance_form.php" class="button">欠席・遅刻登録</a>
+            <a href="attendance_form.php" class="button">新規登録</a>
             <a href="history.php" class="button">入力履歴一覧</a>
             <a href="logout.php" class="button">ログアウト</a>
         </div>
