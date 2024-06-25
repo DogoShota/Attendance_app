@@ -37,7 +37,6 @@ form {
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     width: 300px;
     margin-top: 20px;
 }
@@ -120,6 +119,7 @@ input[type="text"], input[type="password"], input[type="date"] {
 
 /* フォームのスタイルを修正 */
 .delete-form, .edit-form {
+    border: none;
     display: inline-block;
     margin: 0;
     padding: 0;
