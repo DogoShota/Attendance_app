@@ -154,6 +154,10 @@ th {
     align-items: center;
 }
 
+.radio-item {
+    margin: auto;
+}
+
 /* ラジオボタンのスタイル */
 .radio-group input[type="radio"] {
     margin-left: 5px;
