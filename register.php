@@ -1,10 +1,6 @@
 <?php
 session_start();
-
-$conn = new mysqli('localhost', 'root', '', 'attendance_db');
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+require 'config.php'; // データベース接続設定を含むファイル
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
@@ -12,22 +8,43 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password_confirm = $_POST['password_confirm'];
 
     if ($password !== $password_confirm) {
-        echo "パスワードが一致しません。";
+        $error_message = "パスワードが一致しません。";
     } else {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-        $sql = "INSERT INTO users (username, password) VALUES ('$username', '$hashed_password')";
-        if ($conn->query($sql) === TRUE) {
-            echo "ユーザー登録が完了しました。";
-            header("Location: login.php");
-            exit();
-        } else {
-            echo "エラー: " . $sql . "<br>" . $conn->error;
+        // データベース接続
+        $conn = new mysqli('localhost', 'root', '', 'attendance_db');
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
         }
-    }
-}
 
-$conn->close();
+        // ユーザー名が既に存在するかチェック
+        $sql = "SELECT * FROM users WHERE username=?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('s', $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            $error_message = "そのユーザーは登録されています。";
+        } else {
+            // 新規ユーザーを登録
+            $sql = "INSERT INTO users (username, password) VALUES (?, ?)";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param('ss', $username, $hashed_password);
+            if ($stmt->execute()) {
+                $message = "登録完了しました。";
+            } else {
+                $error_message = "登録に失敗しました。";
+            }
+        }
+
+        $stmt->close();
+        $conn->close();
+
+    }
+
+}
 ?>
 
 <!DOCTYPE html>
@@ -40,6 +57,9 @@ $conn->close();
 <body>
     <div class="container">
         <h1>ユーザー登録</h1>
+        <?php if (isset($error_message)): ?>
+            <p class="error"><?php echo htmlspecialchars($error_message, ENT_QUOTES, 'UTF-8'); ?></p>
+        <?php endif; ?>
         <form action="register.php" method="POST">
             <label for="username">ユーザー名:</label>
             <input type="text" id="username" name="username" required>
@@ -53,7 +73,7 @@ $conn->close();
             <button type="submit" class="button">登録</button>
         </form>
         <br>
-        <a href="login.php" class="button">ログイン画面に戻る</a>
+        <a href="login.php" class="button">戻る</a>
     </div>
 </body>
 </html>

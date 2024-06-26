@@ -76,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         ?>
 
         <br>
-        <a href="register.php" class="button">新しいユーザー登録</a>
+        <a href="register.php" class="button">新規ユーザー登録</a>
     </div>
 </body>
 </html>
