@@ -33,7 +33,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $stmt = $conn->prepare($sql);
             $stmt->bind_param('ss', $username, $hashed_password);
             if ($stmt->execute()) {
-                $message = "登録完了しました。";
+                echo "<script>
+                        alert('登録完了しました。');
+                        window.location.href = 'login.php';
+                      </script>";
+                exit();
             } else {
                 $error_message = "登録に失敗しました。";
             }
@@ -53,6 +57,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <title>ユーザー登録</title>
     <link rel="stylesheet" href="style.css">
+    <script>
+        function showSuccessMessage() {
+            alert("登録完了しました。");
+            window.location.href = 'login.php';
+        }
+    </script>
 </head>
 <body>
     <div class="container">
