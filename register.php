@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
     <div class="container">
-        <h1>ユーザー登録</h1>
+        <h2>ユーザー登録</h2>
         <?php if (isset($error_message)): ?>
             <p class="error"><?php echo htmlspecialchars($error_message, ENT_QUOTES, 'UTF-8'); ?></p>
         <?php endif; ?>

@@ -59,9 +59,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
     <div class="container">
         <h2>ログイン</h2>
-        <?php if (!empty($error_message)): ?>
+        <?php 
+        if (!empty($error_message)): ?>
             <p class="error"><?php echo $error_message; ?></p>
         <?php endif; ?>
+        <?php
+        if (isset($error)) {
+            echo "<p style='color:red;'>" . htmlspecialchars($error) . "</p>";
+        }
+        ?>
         <form method="post" action="login.php">
             <label for="username">ユーザー名:</label>
             <input type="text" id="username" name="username" required>
@@ -69,11 +75,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <input type="password" id="password" name="password" required>
             <button type="submit" class="button">ログイン</button>
         </form>
-        <?php
-        if (isset($error)) {
-            echo "<p style='color:red;'>" . htmlspecialchars($error) . "</p>";
-        }
-        ?>
 
         <br>
         <a href="register.php" class="button">新規ユーザー登録</a>
