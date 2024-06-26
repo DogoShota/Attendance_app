@@ -74,6 +74,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             echo "<p style='color:red;'>" . htmlspecialchars($error) . "</p>";
         }
         ?>
+
+        <br>
+        <a href="register.php" class="button">新しいユーザー登録</a>
     </div>
 </body>
 </html>
