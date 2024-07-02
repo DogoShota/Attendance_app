@@ -63,8 +63,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `is_admin`) VALUES
-(5, 'admin', '$2y$10$HWlpVOnHzEROzGCqR0MB.OIVSrd/9Itf4BZ9Uvc7UTM.QD56.Vq.K', 1),
-(18, 'ad', '$2y$10$oNfJYEkud.RWxSJc9Tqzge51ugC.rxXNpdkncowY4ublkwpYnk64S', 0);
+(5, 'admin', '$2y$10$HWlpVOnHzEROzGCqR0MB.OIVSrd/9Itf4BZ9Uvc7UTM.QD56.Vq.K', 1);
 
 --
 -- ダンプしたテーブルのインデックス
