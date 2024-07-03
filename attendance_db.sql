@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- ホスト: 127.0.0.1
--- 生成日時: 2024-07-03 00:30:33
+-- 生成日時: 2024-07-03 13:51:14
 -- サーバのバージョン： 10.4.32-MariaDB
 -- PHP のバージョン: 8.2.12
 
@@ -63,7 +63,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `is_admin`) VALUES
-(5, 'admin', '$2y$10$HWlpVOnHzEROzGCqR0MB.OIVSrd/9Itf4BZ9Uvc7UTM.QD56.Vq.K', 1);
+(5, 'admin', '$2y$10$HWlpVOnHzEROzGCqR0MB.OIVSrd/9Itf4BZ9Uvc7UTM.QD56.Vq.K', 1),
+(18, 'ad', '$2y$10$oNfJYEkud.RWxSJc9Tqzge51ugC.rxXNpdkncowY4ublkwpYnk64S', 0);
 
 --
 -- ダンプしたテーブルのインデックス
