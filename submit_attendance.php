@@ -1,20 +1,23 @@
 <?php
 session_start();
+require 'config.php';
 
 // ログインしていない場合、ログインページへリダイレクト
-if (!isset($_SESSION['username'])) {
+if (!isset($_SESSION['student_id'])) {
     header("Location: login.php");
     exit();
 }
 
+$student_id = $_SESSION['student_id'];
+
 // データベース接続情報
 $servername = "localhost";
-$username = "root";
+$student_id = "root";
 $password = ""; // ここにあなたのMySQLパスワードを設定してください
 $dbname = "attendance_db"; // 修正後のデータベース名
 
 // データベースに接続
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($servername, $student_id, $password, $dbname);
 
 // 接続を確認
 if ($conn->connect_error) {
@@ -33,8 +36,8 @@ $count = 1.0;
 if (isset($class_name) && isset($attendance_date) && isset($remarks) && isset($status)) {
 
     // 出席情報をデータベースに保存
-    $sql = "INSERT INTO attendance (class_name, attendance_date, status, count, remarks) 
-            VALUES ('$class_name', '$attendance_date', '$status', '$count', '$remarks')";
+    $sql = "INSERT INTO attendance (student_id, class_name, attendance_date, status, count, remarks) 
+            VALUES ('$student_id', '$class_name', '$attendance_date', '$status', '$count', '$remarks')";
 
     if ($conn->query($sql) === TRUE) {
         $message = "出席登録が成功しました。";

@@ -4,12 +4,12 @@ session_start();
 
 // データベース接続情報
 $servername = "localhost";
-$username = "root";
+$student_id = "root";
 $password = "";
 $dbname = "attendance_db";
 
 // データベース接続を確立
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($servername, $student_id, $password, $dbname);
 
 // 接続エラーチェック
 if ($conn->connect_error) {
@@ -17,24 +17,24 @@ if ($conn->connect_error) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // ユーザー名とパスワードを取得
-    $username = $_POST['username'];
+    // 学籍番号とパスワードを取得
+    $student_id = $_POST['student_id'];
     $password = $_POST['password'];
 
-    // ユーザー情報を取得
-    $sql = "SELECT * FROM users WHERE username='$username'";
+    // 学籍番号情報を取得
+    $sql = "SELECT * FROM users WHERE student_id='$student_id'";
     $result = $conn->query($sql);
 
-    // ユーザーが見つかった場合
+    // 学籍番号が見つかった場合
     if ($result->num_rows > 0) {
 
-        // ユーザーデータを取得
+        // 学籍番号データを取得
         $user = $result->fetch_assoc();
 
         // パスワードを検証
         if (password_verify($password, $user['password'])) {
-            //セッションにユーザー情報を保存
-            $_SESSION['username'] = $username;
+            // セッションに学籍番号情報を保存
+            $_SESSION['student_id'] = $student_id;
             // ホームページにリダイレクト
             header("Location: index.php");
             exit();
@@ -69,8 +69,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
         ?>
         <form method="post" action="login.php">
-            <label for="username">ユーザー名:</label>
-            <input type="text" id="username" name="username" required>
+            <label for="student_id">学籍番号:</label>
+            <input type="text" id="student_id" name="student_id" required>
             <label for="password">パスワード:</label>
             <input type="password" id="password" name="password" required>
             <button type="submit" class="button">ログイン</button>
