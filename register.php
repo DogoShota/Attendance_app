@@ -3,7 +3,7 @@ session_start();
 require 'config.php'; // データベース接続設定を含むファイル
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $username = $_POST['username'];
+    $student_id = $_POST['student_id'];
     $password = $_POST['password'];
     $password_confirm = $_POST['password_confirm'];
 
@@ -19,9 +19,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         // ユーザー名が既に存在するかチェック
-        $sql = "SELECT * FROM users WHERE username=?";
+        $sql = "SELECT * FROM users WHERE student_id=?";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param('s', $username);
+        $stmt->bind_param('s', $student_id);
         $stmt->execute();
         $result = $stmt->get_result();
 
@@ -29,9 +29,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $error_message = "そのユーザーは登録されています。";
         } else {
             // 新規ユーザーを登録
-            $sql = "INSERT INTO users (username, password) VALUES (?, ?)";
+            $sql = "INSERT INTO users (student_id, password) VALUES (?, ?)";
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param('ss', $username, $hashed_password);
+            $stmt->bind_param('ss', $student_id, $hashed_password);
             if ($stmt->execute()) {
                 echo "<script>
                         alert('登録完了しました。');
@@ -71,8 +71,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <p class="error"><?php echo htmlspecialchars($error_message, ENT_QUOTES, 'UTF-8'); ?></p>
         <?php endif; ?>
         <form action="register.php" method="POST">
-            <label for="username">ユーザー名:</label>
-            <input type="text" id="username" name="username" required>
+            <label for="student_id">学籍番号:</label>
+            <input type="text" id="student_id" name="student_id" required>
             
             <label for="password">パスワード:</label>
             <input type="password" id="password" name="password" required>

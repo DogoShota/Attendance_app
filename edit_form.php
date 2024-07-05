@@ -2,7 +2,7 @@
 session_start();
 
 // ログインしていない場合、ログインページへリダイレクト
-if (!isset($_SESSION['username'])) {
+if (!isset($_SESSION['student_id'])) {
     header("Location: login.php");
     exit();
 }
