@@ -33,7 +33,7 @@ $status = $_POST['status'];
 // ステータスに基づいてカウントを設定
 $count = 1.0;
 
-if (isset($class_name) && isset($attendance_date) && isset($remarks) && isset($status)) {
+if (isset($student_id) && isset($class_name) && isset($attendance_date) && isset($remarks) && isset($status)) {
 
     // 出席情報をデータベースに保存
     $sql = "INSERT INTO attendance (student_id, class_name, attendance_date, status, count, remarks) 
