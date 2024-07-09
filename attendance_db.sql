@@ -35,14 +35,14 @@ CREATE TABLE `attendance` (
   `attendance_value` float DEFAULT NULL,
   `count` decimal(3,1) NOT NULL,
   `remarks` text DEFAULT NULL,
-  `user_id` int(11) NOT NULL
+  `student_id` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- テーブルのデータのダンプ `attendance`
 --
 
-INSERT INTO `attendance` (`id`, `class_name`, `attendance_date`, `status`, `attendance_value`, `count`, `remarks`, `user_id`) VALUES
+INSERT INTO `attendance` (`id`, `class_name`, `attendance_date`, `status`, `attendance_value`, `count`, `remarks`, `student_id`) VALUES
 (85, '卒論', '2024-06-28', '欠席', NULL, 1.0, '通院のため', 0);
 
 -- --------------------------------------------------------
@@ -53,7 +53,7 @@ INSERT INTO `attendance` (`id`, `class_name`, `attendance_date`, `status`, `atte
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
-  `username` varchar(50) NOT NULL,
+  `student_id` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
   `is_admin` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -62,7 +62,7 @@ CREATE TABLE `users` (
 -- テーブルのデータのダンプ `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`, `is_admin`) VALUES
+INSERT INTO `users` (`id`, `student_id`, `password`, `is_admin`) VALUES
 (5, 'admin', '$2y$10$HWlpVOnHzEROzGCqR0MB.OIVSrd/9Itf4BZ9Uvc7UTM.QD56.Vq.K', 1),
 (18, 'ad', '$2y$10$oNfJYEkud.RWxSJc9Tqzge51ugC.rxXNpdkncowY4ublkwpYnk64S', 0);
 
@@ -81,7 +81,7 @@ ALTER TABLE `attendance`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `username` (`username`);
+  ADD UNIQUE KEY `student_id` (`student_id`);
 
 --
 -- ダンプしたテーブルの AUTO_INCREMENT
