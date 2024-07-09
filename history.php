@@ -7,6 +7,8 @@ if (!isset($_SESSION['student_id'])) {
     exit();
 }
 
+$student_id = $_SESSION['student_id'];
+
 // データベースに接続
 $conn = new mysqli('localhost', 'root', '', 'attendance_db');
 

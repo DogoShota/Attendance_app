@@ -42,10 +42,10 @@ $status = $_POST['status'];
 $count = 1.0;
 
 if (isset($student_id) && isset($class_name) && isset($attendance_date) && isset($remarks) && isset($status)) {
-
+    $id = $_SESSION['student_id'];
     // 出席情報をデータベースに保存
     $sql = "INSERT INTO attendance (student_id, class_name, attendance_date, status, count, remarks) 
-            VALUES ('$student_id', '$class_name', '$attendance_date', '$status', '$count', '$remarks')";
+            VALUES ('$id', '$class_name', '$attendance_date', '$status', '$count', '$remarks')";
 
     if ($conn->query($sql) === TRUE) {
         $message = "出席登録が成功しました。";
