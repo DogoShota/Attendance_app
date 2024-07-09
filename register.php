@@ -1,17 +1,19 @@
 <?php
 session_start();
-require 'config.php'; // データベース接続設定を含むファイル
+require 'config.php';
 
+// ユーザー登録処理
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $student_id = $_POST['student_id'];
     $password = $_POST['password'];
     $password_confirm = $_POST['password_confirm'];
 
+    // パスワード一致チェック
     if ($password !== $password_confirm) {
         $error_message = "パスワードが一致しません。";
     } else {
+        // パスワードのハッシュ化
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
         // データベース接続
         $conn = new mysqli('localhost', 'root', '', 'attendance_db');
         if ($conn->connect_error) {
@@ -28,15 +30,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($result->num_rows > 0) {
             $error_message = "そのユーザーは登録されています。";
         } else {
-            // 新規ユーザーを登録
+            // 新規ユーザーの登録
             $sql = "INSERT INTO users (student_id, password) VALUES (?, ?)";
             $stmt = $conn->prepare($sql);
             $stmt->bind_param('ss', $student_id, $hashed_password);
             if ($stmt->execute()) {
-                echo "<script>
-                        alert('登録完了しました。');
-                        window.location.href = 'login.php';
-                      </script>";
+                echo "<script> alert('登録完了しました。'); window.location.href = 'login.php'; </script>";
                 exit();
             } else {
                 $error_message = "登録に失敗しました。";
@@ -47,7 +46,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $conn->close();
 
     }
-
 }
 ?>
 

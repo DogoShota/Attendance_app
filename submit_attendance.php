@@ -2,7 +2,7 @@
 session_start();
 require 'config.php';
 
-// ログインしていない場合、ログインページへリダイレクト
+// ログインしていない場合、ログイン画面にリダイレクト
 if (!isset($_SESSION['student_id'])) {
     header("Location: login.php");
     exit();
@@ -23,14 +23,6 @@ $conn = new mysqli($servername, $student_id, $password, $dbname);
 if ($conn->connect_error) {
     die("データベース接続に失敗しました。" . $conn->connect_error);
 }
-
-/*
-鯖
-・英数字以外文字化けする
-・stydent_idが変わらない（定数？）
-アプリ
-・ユーザ別の画面にならない（同じ画面に行く）
-*/
 
 // フォームからデータを受け取る
 $class_name = $_POST['class_name'];

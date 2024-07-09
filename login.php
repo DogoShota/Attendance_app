@@ -1,5 +1,4 @@
 <?php
-// セッションを開始
 session_start();
 
 // データベース接続情報
@@ -16,6 +15,7 @@ if ($conn->connect_error) {
     die("データベース接続に失敗しました: " . $conn->connect_error);
 }
 
+// ログイン処理
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // 学籍番号とパスワードを取得
     $student_id = $_POST['student_id'];
@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
     <div class="container">
         <h2>ログイン</h2>
-        <?php 
+        <?php
         if (!empty($error_message)): ?>
             <p class="error"><?php echo $error_message; ?></p>
         <?php endif; ?>

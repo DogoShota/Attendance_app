@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// ログインしていない場合、ログインページへリダイレクト
+// ログインしていない場合、ログイン画面にリダイレクト
 if (!isset($_SESSION['student_id'])) {
     header("Location: login.php");
     exit();
@@ -17,8 +17,8 @@ if ($conn->connect_error) {
     die("接続失敗:" . $conn->connect_error);
 }
 
-// 欠席と遅刻の総数を取得
-$sql = "SELECT 
+// 総欠課数を取得
+$sql = "SELECT
             SUM(CASE WHEN status = '欠席' THEN count ELSE 0 END) AS total_absences,
             SUM(CASE WHEN status = '遅刻' THEN count ELSE 0 END) AS total_tardies,
             SUM(CASE WHEN status = '早退' THEN count ELSE 0 END) AS total_early_leaves
@@ -28,6 +28,7 @@ $result = $conn->query($sql);
 $total_absences = 0;
 $total_tardies = 0;
 $total_early_leaves = 0;
+$total_count = 0;
 if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
     $total_absences = $row['total_absences'];
@@ -35,8 +36,8 @@ if ($result->num_rows > 0) {
     $total_early_leaves = $row['total_early_leaves'];
 }
 
-// 遅刻を3回で1回の欠席としてカウントしたい
-$total_absences = floor(($total_absences * 3 + $total_tardies + $total_early_leaves) / 3 * 10) / 10;
+// 遅刻を3回で1回の欠席としてカウント
+$total_count = floor(($total_absences * 3 + $total_tardies + $total_early_leaves) / 3 * 10) / 10;
 
 $conn->close();
 ?>
@@ -52,12 +53,13 @@ $conn->close();
     <div class="container">
         <h1>ホーム画面</h1>
         <div class="top-buttons">
+            <p>学籍番号: <?php echo htmlspecialchars($student_id); ?></p>
             <a href="attendance_form.php" class="button">新規登録</a>
             <a href="history.php" class="button">入力履歴一覧</a>
             <a href="logout.php" class="button">ログアウト</a>
         </div>
         <br>
-        <h2>現在の総欠課数: <?php echo htmlspecialchars($total_absences, ENT_QUOTES, 'UTF-8'); ?></h2>
+        <h2>現在の総欠課数: <?php echo htmlspecialchars($total_count, ENT_QUOTES, 'UTF-8'); ?></h2>
     </div>
     </div>
 </body>

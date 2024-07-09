@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// ログインしていない場合、ログインページへリダイレクト
+// ログインしていない場合、ログイン画面にリダイレクト
 if (!isset($_SESSION['student_id'])) {
     header("Location: login.php");
     exit();
@@ -71,7 +71,7 @@ $conn->close();
             <tbody>
                 <?php foreach ($attendance_data as $data): ?>
                     <tr>
-                        <td><?php echo htmlspecialchars($data['attendance_date'], ENT_QUOTES, 'UTF-8'); ?></td>
+                        <td><?php echo htmlspecialchars(date('n/j', strtotime($data['attendance_date'])), ENT_QUOTES, 'UTF-8'); ?></td>
                         <td><?php echo htmlspecialchars($data['class_name'], ENT_QUOTES, 'UTF-8'); ?></td>
                         <td><?php echo htmlspecialchars($data['status'], ENT_QUOTES, 'UTF-8'); ?></td>
                         <td><?php echo htmlspecialchars($data['remarks'], ENT_QUOTES, 'UTF-8'); ?></td>
