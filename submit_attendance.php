@@ -13,7 +13,7 @@ $student_id = $_SESSION['student_id'];
 // データベース接続情報
 $servername = "localhost";
 $student_id = "root";
-$password = ""; // ここにあなたのMySQLパスワードを設定してください
+$password = "";
 $dbname = "attendance_db"; // 修正後のデータベース名
 
 // データベースに接続
@@ -36,7 +36,7 @@ $count = 1.0;
 if (isset($student_id) && isset($class_name) && isset($attendance_date) && isset($remarks) && isset($status)) {
     $id = $_SESSION['student_id'];
     // 出席情報をデータベースに保存
-    $sql = "INSERT INTO attendance (student_id, class_name, attendance_date, status, count, remarks) 
+    $sql = "INSERT INTO attendance (student_id, class_name, attendance_date, status, count, remarks)
             VALUES ('$id', '$class_name', '$attendance_date', '$status', '$count', '$remarks')";
 
     if ($conn->query($sql) === TRUE) {
