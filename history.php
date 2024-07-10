@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_id'])) {
 }
 
 // 入力履歴を取得
-$sql = "SELECT id, attendance_date, class_name, status, remarks FROM attendance";
+$sql = "SELECT id, attendance_date, class_name, status, remarks FROM attendance WHERE student_id = '$student_id'";
 $result = $conn->query($sql);
 
 $attendance_data = [];

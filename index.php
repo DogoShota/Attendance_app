@@ -22,7 +22,8 @@ $sql = "SELECT
             SUM(CASE WHEN status = '欠席' THEN count ELSE 0 END) AS total_absences,
             SUM(CASE WHEN status = '遅刻' THEN count ELSE 0 END) AS total_tardies,
             SUM(CASE WHEN status = '早退' THEN count ELSE 0 END) AS total_early_leaves
-        FROM attendance";
+        FROM attendance
+        WHERE student_id = '$student_id'";
 $result = $conn->query($sql);
 
 $total_absences = 0;
