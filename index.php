@@ -25,10 +25,11 @@ $sql = "SELECT
         FROM attendance";
 $result = $conn->query($sql);
 
-$total_absences = 0;
-$total_tardies = 0;
-$total_early_leaves = 0;
-$total_count = 0;
+// 計算
+$total_absences = 0;     // 総遅刻数
+$total_tardies = 0;      // 総遅刻数
+$total_early_leaves = 0; // 総早退数
+$total_count = 0;        // 総カウント数
 if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
     $total_absences = $row['total_absences'];
