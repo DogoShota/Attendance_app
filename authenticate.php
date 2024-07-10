@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+// ユーザーの登録処理
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $student_id = $_POST['student_id'];
     $password = $_POST['password'];
