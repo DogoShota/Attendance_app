@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- ホスト: 127.0.0.1
--- 生成日時: 2024-07-03 13:51:14
+-- 生成日時: 2024-07-26 03:14:20
 -- サーバのバージョン： 10.4.32-MariaDB
 -- PHP のバージョン: 8.2.12
 
@@ -32,7 +32,6 @@ CREATE TABLE `attendance` (
   `class_name` varchar(100) NOT NULL,
   `attendance_date` date NOT NULL,
   `status` varchar(10) NOT NULL,
-  `attendance_value` float DEFAULT NULL,
   `count` decimal(3,1) NOT NULL,
   `remarks` text DEFAULT NULL,
   `student_id` varchar(50) NOT NULL
@@ -42,8 +41,31 @@ CREATE TABLE `attendance` (
 -- テーブルのデータのダンプ `attendance`
 --
 
-INSERT INTO `attendance` (`id`, `class_name`, `attendance_date`, `status`, `attendance_value`, `count`, `remarks`, `student_id`) VALUES
-(85, '卒論', '2024-06-28', '欠席', NULL, 1.0, '通院のため', 0);
+INSERT INTO `attendance` (`id`, `class_name`, `attendance_date`, `status`, `count`, `remarks`, `student_id`) VALUES
+(87, '医事カルテ', '2024-07-03', '遅刻', 1.0, '頭痛が痛い', 'admin'),
+(90, '卒論', '2024-07-01', '欠席', 1.0, '通院のため', '214016');
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `classes`
+--
+
+CREATE TABLE `classes` (
+  `class_id` int(11) NOT NULL,
+  `class_name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- テーブルのデータのダンプ `classes`
+--
+
+INSERT INTO `classes` (`class_id`, `class_name`) VALUES
+(1, '総合演習'),
+(2, '卒論'),
+(3, '企業活動'),
+(4, 'テスト移行'),
+(5, 'H/R');
 
 -- --------------------------------------------------------
 
@@ -64,7 +86,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `student_id`, `password`, `is_admin`) VALUES
 (5, 'admin', '$2y$10$HWlpVOnHzEROzGCqR0MB.OIVSrd/9Itf4BZ9Uvc7UTM.QD56.Vq.K', 1),
-(18, 'ad', '$2y$10$oNfJYEkud.RWxSJc9Tqzge51ugC.rxXNpdkncowY4ublkwpYnk64S', 0);
+(19, '214016', '$2y$10$npM7.lYaaXS6swC.NhADYOT0E2VEZfgemfBz1b5Syqk05yXZe.HCi', 0);
 
 --
 -- ダンプしたテーブルのインデックス
@@ -75,6 +97,12 @@ INSERT INTO `users` (`id`, `student_id`, `password`, `is_admin`) VALUES
 --
 ALTER TABLE `attendance`
   ADD PRIMARY KEY (`id`);
+
+--
+-- テーブルのインデックス `classes`
+--
+ALTER TABLE `classes`
+  ADD PRIMARY KEY (`class_id`);
 
 --
 -- テーブルのインデックス `users`
@@ -91,13 +119,19 @@ ALTER TABLE `users`
 -- テーブルの AUTO_INCREMENT `attendance`
 --
 ALTER TABLE `attendance`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
+
+--
+-- テーブルの AUTO_INCREMENT `classes`
+--
+ALTER TABLE `classes`
+  MODIFY `class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- テーブルの AUTO_INCREMENT `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
